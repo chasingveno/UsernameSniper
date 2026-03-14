@@ -168,7 +168,7 @@ def main():
     generator = AvisStyleUsernameGenerator()
     stop_flag = {"stop": False}
 
-    # 👇 ENTER listener (FIXED)
+    #  enter listener (FIXED)
     def listen_for_enter():
         input()
         stop_flag["stop"] = True
@@ -194,22 +194,22 @@ def main():
     
     keywords = None
     if option == "14":
-        print("\n📝 Enter keywords for word generation (Comma Wise)")
+        print("\n Enter keywords for word generation (Comma Wise)")
         print("   Example: void, dream, ghost")
         keywords_input = input("➤ Keywords: ").strip()
         if keywords_input:
             keywords = [k.strip().lower() for k in keywords_input.split(",") if k.strip()]
     
-    count = int(input("\n🔢 How many usernames to generate?: ").strip() or "1")
+    count = int(input("\n How many usernames to generate?: ").strip() or "1")
     
     print("\n⚡ Number of threads (more = faster, but don't overdo it)")
     print("   Recommended: 1-200 threads")
     num_threads = int(input("➤ Threads: ").strip() or "1")
     num_threads = max(1, min(num_threads, 200))
     
-    print("\n⏸️  Press ENTER to stop the search\n")
+    print("\n  Press ENTER to stop the search\n")
 
-    # 👇 start ENTER listener
+    # start enter listener
     threading.Thread(target=listen_for_enter, daemon=True).start()
     
     result_queue = Queue()
@@ -243,16 +243,16 @@ def main():
     for t in workers:
         t.join()
     
-    print("\n📊 AVAILABLE USERNAMES\n")
+    print("\n AVAILABLE USERNAMES\n")
     for u in available:
         print("   ✅", u)
     
-    print(f"\n✨ Found {len(available)} usernames")
-    print(f"⏱️  Time: {time.time() - start_time:.1f}s | Checked: {len(checked_set)}")
+    print(f"\n Found {len(available)} usernames")
+    print(f"  Time: {time.time() - start_time:.1f}s | Checked: {len(checked_set)}")
 
 if __name__ == "__main__":
     while True:
         main()
-        again = input("\n🔁 Generate again? (y/n): ").lower()
+        again = input("\n Generate again? (y/n): ").lower()
         if again != "y":
             break
